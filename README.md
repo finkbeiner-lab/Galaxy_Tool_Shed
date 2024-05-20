@@ -3,17 +3,18 @@ This project stores our custom Finkbeiner Lab Galaxy tools and exposes them to G
 
 
 ## Structure of this project
-Galaxy_Tool_Shed/
-├── tool1/
-│   ├── tool1.xml
-│   ├── tool1.py
-│   └── test-data/
-├── tool2/
-│   ├── tool2.xml
-│   ├── tool2.py
-│   └── test-data/
-└── README.md
-
+```
+Galaxy_Tool_Shed/  
+├── tool1/  
+│   ├── tool1.xml  
+│   ├── tool1.py  
+│   └── test-data/  
+├── tool2/  
+│   ├── tool2.xml  
+│   ├── tool2.py  
+│   └── test-data/  
+└── README.md  
+```
 
 ## Tell Galaxy about our Tool Shed
 This ToolShed will be pulled into Galaxy by creating/modifying the Galaxy's `config/tool_sheds_conf.xml` with the following:
