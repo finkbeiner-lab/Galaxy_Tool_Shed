@@ -32,8 +32,4 @@ tool_sheds_config_file: config/tool_sheds_conf.xml
 
 ## Install the Tool
 Tools are not usually installed by default just because they exist in a Tool Shed that Galaxy knows about. There are many Galaxy Tool Sheds, with thousands of available tools. So if your tool isn't showing up, it probably needs to be installed in Galaxy through the admin interface.
-=======
 This project stores our custom Finkbeiner Lab Galaxy tools and exposes them to Galaxy as an additional ToolShed repository. See Galaxy's guide to [adding tools](https://galaxyproject.org/admin/tools/add-tool-from-toolshed-tutorial/) for more info.
-
-# Structure
-There is an outer ToolShed repository that contains references to each tool's individual repository. This repository composition structure is driven by the recommended approach from the Galaxy developers.
