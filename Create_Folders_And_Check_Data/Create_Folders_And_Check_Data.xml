@@ -1,0 +1,87 @@
+<tool id="create_folders_check_data" name="Create folders and check data" version="0.1">
+
+<description>Generates output folders and checks for data completeness.</description>
+
+<requirements>
+    <requirement type="package">opencv-python</requirement>
+    <requirement type="package">pandas</requirement>
+</requirements>
+
+<command interpreter="python">
+create_folders_check_data.py $input_image_path $output_results_path $dir_structure $robo_num $imaging_mode $morphology_channel $px_overlap $wells_toggle $timepoints_toggle $channels_toggle $check_data $outfile
+
+#if $hnum != '':
+   --num_rows '$hnum'
+#end if
+#if $vnum != '':
+   --num_cols '$vnum'
+#end if
+#if str($these_wells_only) !='':
+   --chosen_wells '$these_wells_only'
+#end if
+#if str($these_times_only) !='':
+   --chosen_timepoints '$these_times_only'
+#end if
+#if str($these_channels_only) !='':
+   --chosen_channels '$these_channels_only'
+#end if
+</command>
+
+<inputs>
+<param name="input_image_path" type="text" format="text" value="/gladstone/finkbeiner/robodata/experiment_folder" size="70" label="Enter path to raw images" help="Note that RoboData/your_folders = /gladstone/finkbeiner/robodata/experiment_folder"/>
+<param name="dir_structure" type="select" label="Select folder stucture of raw images" help="Indicate whether input images are saved directly in the input folder (legacy datasets), or are saved under separate folders by well.">
+            <option value="sub_dir" selected="true"  >Well Subfolders</option>
+            <option value="root_dir"	    		 >Root</option>
+</param>
+<param name="output_results_path" type="text" format="text" value="/gladstone/finkbeiner/your_folders/GXYTMP" size="70" label="Enter path to output destination. Must contain the string 'GXYTMP' (case sensitive)" help="Note that RoboData/your_folders = /gladstone/finkbeiner/your_folders ( /gladstone/finkbeiner/steve, /gladstone/finkbeiner/barbe, /gladstone/finkbeiner/elia, /gladstone/finkbeiner/kaye, /gladstone/finkbeiner/linsley, /gladstone/finkbeiner/robodata, /gladstone/finkbeiner/scratch, /gladstone/finkbeiner/lab)"/>
+<param name="morphology_channel" type="text" format="text" label="Enter morphology channel identifier" help=" This should match the characters in filename, e.g. FITC, RFP, GFP16, RFP16"/>
+<param name="robo_num" type="select" label="Select microscope or auto-detect"
+       help="Select file naming convention used for imaging. Auto-detect only works if input images are in a RoboXImages folder. For IXM please use Robo 0.">
+            <option value="1" selected="true">Auto-detect</option>
+            <option value="3">Robo3</option>
+            <option value="4">Robo4</option>
+            <option value="0">Robo0</option>
+</param>
+<param name="imaging_mode" type="select" label="Select imaging modality" help="You only need to change this if you are using old Robo4 naming scheme. If you are using the Robo0 option above, this parameter is not used.">
+            <option value="epi" selected="true">Epi fluorescence</option>
+            <option value="confocal">Confocal</option>
+</param>
+<param name="px_overlap" type="integer" value="30" size="10" label="Enter image overlap in pixels" help="e.g. 30"/>
+<param name="hnum" type="integer" value="" size="10" label="Optional: Enter montage image rows" help="Leave blank to auto-detect array size, or enter montage image rows (e.g. 4). Must enter a value if array size is not square." optional="true"/>
+<param name="vnum" type="integer" value="" size="10" label="Optional: Enter montage image columns" help="Leave blank to auto-detect array size, or enter montage image columns (e.g. 4). Must enter a value if array size is not square." optional="true"/>
+<param name="these_wells_only" type="text" format="text" value="" size="70" label="Optional: Enter wells you would like included or excluded" help="Separate individual wells by commas (e.g. A3,B11,D4,D6). Can also indicate a range of wells using a dash (e.g. B11-D2). Leave blank to include all available wells." optional="true"/>
+<param name="wells_toggle" type="select" display="radio" label="Select whether to include or exclude the wells specified above:">
+	<option value="include" selected="true">Include wells</option>
+	<option value="exclude">Exclude wells</option>
+</param>
+<param name="these_times_only" type="text" format="text" value="" size="70" label="Optional: Enter timepoints you would like included or excluded" help="Separate individual timepoints by commas (e.g. T3,T4,T9,T12). Can also indicate a range of timepoints using a dash (e.g. T5-T10). Leave blank to include all available timepoints." optional="true"/>
+<param name="timepoints_toggle" type="select" display="radio" label="Select whether to include or exclude the timepoints specified above">
+	<option value="include" selected="true">Include timepoints</option>
+	<option value="exclude">Exclude timepoints</option>
+</param>
+<param name="these_channels_only" type="text" format="text" value="" size="70" label="Optional: Enter channel identifiers you would like included or excluded" help="Separate individual channels by commas (e.g. FITC,RFP,DAPI). Leave blank to include all available channels." optional="true"/>
+<param name="channels_toggle" type="select" display="radio" label="Select whether to include or exclude the channels specified above">
+	<option value="include" selected="true">Include channels</option>
+	<option value="exclude">Exclude channels</option>
+</param>
+<param name="check_data" type="select" display="select" label="Check for wells with missing data?" help="Option to check data for wells with missing timepoints, channels, or panels. Currently only works if input is raw images. Will only check wells/timepoints selected for analysis. If any wells have incomplete data, Galaxy run will error out and save info on the problem wells as a csv to the above output path.">
+	<option value="1" selected="true">Check data</option>
+	<option value="0">Don't check data</option>
+</param>
+</inputs>
+
+<outputs>
+<data name="outfile" type="data" format="data" label="Create Folders and Check Data"/>
+</outputs>
+
+<help>
+Takes input directory - where raw data is stored on the server.
+Takes output directory - where the output will be stored.
+Takes experiment name - a folder will be generated with the name of the experiment in the output directory. All of the results will be in this folder.
+Takes morphology channel (as defined in filename).
+Takes imaging path (epi or confocal).
+Takes horizontal and vertical dimensions of panels to be montaged.
+Takes overlap between images that should be used in stitching.
+</help>
+
+</tool>
