@@ -30,6 +30,21 @@ Galaxy_Tool_Shed/
 └── README.md
 ```
 
+# Shed Definition
+Each shed (again, tool repository), has a yaml defining the metadata about the tool. It follows a structure like so:
+
+```
+name: tool_name
+owner: finkbeiner-lab
+description: "A description of the tool"
+long_description: "A longer, more detailed description of the tool and its functionality."
+categories:
+  - Text Manipulation
+  - Statistics
+homepage_url: "https://github.com/finkbeiner-lab/tool_name"
+remote_repository_url: "https://github.com/finkbeiner-lab/tool_name"
+```
+
 ## Tell Galaxy about our Tool Shed
 This ToolShed will be pulled into Galaxy by creating/modifying the Galaxy's `config/tool_sheds_conf.xml` with the following:
 ```
