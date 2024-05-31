@@ -3,17 +3,31 @@ This project stores our custom Finkbeiner Lab Galaxy tools and exposes them to G
 
 
 ## Structure of this project
+In Galaxy, each tool is in its own "shed", the name given to a repository that contains a single tool. These "sheds" or "repositories" are contained within the ToolShed. Each shed is decoupled from the others, and has its own versioning, dependencies,and metadata. The structure of this project therefore follows the ToolShed structure defined by Galaxy.
+
 ```
 Galaxy_Tool_Shed/  
-├── tool1/  
-│   ├── tool1.xml  
-│   ├── tool1.py  
-│   └── test-data/  
-├── tool2/  
-│   ├── tool2.xml  
-│   ├── tool2.py  
-│   └── test-data/  
-└── README.md  
+├── tool_name/
+│   ├── tool_name.xml
+│   ├── tool_name.py
+│   ├── test-data/
+│   │   ├── test_input1.txt
+│   │   └── expected_output1.txt
+│   │   ├── test_input2.txt
+│   │   └── expected_output2.txt
+│   ├── README.rst
+│   └── .shed.yml
+├── tool_name/
+│   ├── tool_name.xml
+│   ├── tool_name.py
+│   ├── test-data/
+│   │   ├── test_input1.txt
+│   │   └── expected_output1.txt
+│   │   ├── test_input2.txt
+│   │   └── expected_output2.txt
+│   ├── README.rst
+│   └── .shed.yml
+└── README.md
 ```
 
 ## Tell Galaxy about our Tool Shed
