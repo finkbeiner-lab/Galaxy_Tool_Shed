@@ -1,0 +1,18 @@
+name: create_folders_and_check_data
+owner: finkbeiner-lab
+description: "Generates output folders and checks for data completeness."
+long_description: "This tool creates folders and checks data completeness based on the provided input file."
+categories:
+  - Data Management
+  - Data Validation
+homepage_url: ""https://github.com/finkbeiner-lab/Galaxy_Tool_Shed/Create_Folders_And_Check_Data"
+remote_repository_url: "https://github.com/finkbeiner-lab/Galaxy_Tool_Shed"
+requirements:
+  - type: package
+    name: python
+    version: "3.8"
+  - type: package
+    name: opencv-python
+  - type: package
+    name: pandas
+
