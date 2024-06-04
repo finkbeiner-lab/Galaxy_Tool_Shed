@@ -1,5 +1,5 @@
 ---
-name: create_folders_and_check_data
+name: Create_Folders_And_Check_Data
 owner: finkbeiner-lab
 description: "Generates output folders and checks for data completeness."
 long_description: |
