@@ -59,13 +59,13 @@
             <option value="include" selected="true">Include channels</option>
             <option value="exclude">Exclude channels</option>
         </param>
-        <param name="check_data" type="select" display="select" label="Check for wells with missing data?" help="Option to check data for wells with missing timepoints, channels, or panels. Currently only works if input is raw images. Will only check wells/timepoints selected for analysis. If any wells have incomplete data, Galaxy run will error out and save info on the problem wells as a csv to the above output path.">
+        <param name="check_data" type="select" display="radio" label="Check for wells with missing data?" help="Option to check data for wells with missing timepoints, channels, or panels. Currently only works if input is raw images. Will only check wells/timepoints selected for analysis. If any wells have incomplete data, Galaxy run will error out and save info on the problem wells as a csv to the above output path.">
             <option value="1" selected="true">Check data</option>
             <option value="0">Don't check data</option>
         </param>
     </inputs>
     <outputs>
-        <data name="outfile" type="data" format="data" label="Create Folders and Check Data"/>
+        <data name="outfile" format="data" label="Create Folders and Check Data"/>
     </outputs>
     <help>
         Takes input directory - where raw data is stored on the server.
